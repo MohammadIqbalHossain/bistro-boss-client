@@ -2,8 +2,6 @@ import { Parallax } from "react-parallax";
 
 const Cover = ({ img, title, description }) => {
     return (
-
-
         <Parallax
             bgImage={img}
             strength={200}
