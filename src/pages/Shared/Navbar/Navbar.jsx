@@ -2,11 +2,10 @@
 
 import { useState } from "react";
 
-
-
 import logo from '../../../assets/logo.png';
 import cartIcon from '../../../assets/icon/cart-icon.png';
 import avatar from '../../../assets/icon/avatar.svg';
+import { Link } from "react-router-dom";
 
 
 const Navbar = () => {
@@ -17,18 +16,18 @@ const Navbar = () => {
     };
 
     const navOptions = <>
-        <a href="#" className="block text-white py-2 uppercase" >
+        <Link to="/" className="block text-white py-2 uppercase" >
             Home
-        </a >
+        </Link>
         <a href="#" className="block text-white py-2 uppercase">
             Contact us
         </a>
         <a href="#" className="block text-white py-2 uppercase">
             Dashboard
         </a>
-        <a href="#" className="block text-white py-2 uppercase">
+        <Link to="/menu" className="block text-white py-2 uppercase">
             Our Menu
-        </a>
+        </Link>
         <a href="#" className="block text-white py-2 uppercase">
             Our Shop
         </a>
