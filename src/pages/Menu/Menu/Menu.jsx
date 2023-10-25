@@ -9,6 +9,7 @@ import saladCover from '../../../assets/menu/salad-bg.jpg';
 import soupCover from '../../../assets/menu/soup-bg.jpg';
 import dessertCover from '../../../assets/menu/dessert-bg.jpeg';
 
+// I've to change cover componet here. I can take it from here and place it to the MenuCategory and dynamically sent it's props as menucategorys props. and render it dynamically ther. if menu category is true/there render cover component. 
 
 
 const Menu = () => {
@@ -29,7 +30,15 @@ const Menu = () => {
                 subHeading={"---Don't miss---"}
             ></SectionTitle>
             {/* Offered category */}
-            <MenuCategory categoryName="offered"></MenuCategory>
+            <MenuCategory categoryName="offered" title="salad"></MenuCategory>
+
+            {/* dessert category */}
+            <Cover
+                img={dessertCover}
+                title="DESSERT"
+                description="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
+            </Cover>
+            <MenuCategory categoryName="dessert" title="dessert"></MenuCategory>
 
             {/* Pizza category */}
             <Cover
@@ -37,7 +46,7 @@ const Menu = () => {
                 title="PIZZA"
                 description="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
             </Cover>
-            <MenuCategory categoryName="pizza"></MenuCategory>
+            <MenuCategory categoryName="pizza"  title="pizza"></MenuCategory>
 
               {/* salads category */}
               <Cover
@@ -45,7 +54,7 @@ const Menu = () => {
                 title="salads"
                 description="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
             </Cover>
-            <MenuCategory categoryName="salad"></MenuCategory>
+            <MenuCategory categoryName="salad"  title="salad"></MenuCategory>
 
              {/* soups category */}
              <Cover
@@ -53,8 +62,7 @@ const Menu = () => {
                 title="soups"
                 description="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
             </Cover>
-            <MenuCategory categoryName="soup"></MenuCategory>
-
+            <MenuCategory categoryName="soup" title="soup"></MenuCategory>
 
         </div>
     );

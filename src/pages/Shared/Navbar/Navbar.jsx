@@ -28,9 +28,12 @@ const Navbar = () => {
         <Link to="/menu" className="block text-white py-2 uppercase">
             Our Menu
         </Link>
-        <a href="#" className="block text-white py-2 uppercase">
+        <Link to="/order/salad" className="block text-white py-2 uppercase">
             Our Shop
-        </a>
+        </Link>
+        <Link to="/login" className="block text-white py-2 uppercase">
+            Login
+        </Link>
         <a href="#" className="flex items-center">
             <img width="40px" src={cartIcon} alt="" />
         </a>
