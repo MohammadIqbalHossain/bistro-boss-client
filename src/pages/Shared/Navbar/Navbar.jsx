@@ -6,10 +6,20 @@ import logo from '../../../assets/logo.png';
 import cartIcon from '../../../assets/icon/cart-icon.png';
 import avatar from '../../../assets/icon/avatar.svg';
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { user, logOut } = useContext(AuthContext);
+    console.log(user);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.log(error))
+    }
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -31,15 +41,22 @@ const Navbar = () => {
         <Link to="/order/salad" className="block text-white py-2 uppercase">
             Our Shop
         </Link>
-        <Link to="/login" className="block text-white py-2 uppercase">
-            Login
+        <Link to="/secret" className="block text-white py-2 uppercase">
+            Secret
         </Link>
+
         <a href="#" className="flex items-center">
             <img width="40px" src={cartIcon} alt="" />
         </a>
         <a href="#" className="flex  items-center text-white py-2 uppercase">
-            <p>Sign out</p>
-            <img width="40px" src={avatar} alt="" />
+            {user ? <>
+                <button onClick={handleLogOut} className="btn btn-ghost">Sign out</button>
+            </> : <>
+                <Link to="/login" className="block text-white py-2 uppercase">
+                    Login
+                </Link>
+            </>}
+            {user ? <img width="40px" src={user?.PhotoURL} alt="" /> : <img width="40px" src={avatar} alt="" />}
         </a>
     </>
     return (
