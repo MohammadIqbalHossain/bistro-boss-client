@@ -45,6 +45,13 @@ const Navbar = () => {
             Secret
         </Link>
 
+        <Link to="/" className="block text-white py-2 uppercase">
+            <button className="btn">
+                Inbox
+                <div className="badge badge-secondary">+99</div>
+            </button>
+        </Link>
+
         <a href="#" className="flex items-center">
             <img width="40px" src={cartIcon} alt="" />
         </a>
