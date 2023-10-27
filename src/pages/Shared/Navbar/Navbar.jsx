@@ -49,7 +49,7 @@ const Navbar = () => {
             Secret
         </Link>
 
-        <Link to="/" className="block text-white py-2 uppercase">
+        <Link to="/dashboard/mycart" className="block text-white py-2 uppercase">
             <button className="btn">
                 <div className="text-3xl">
                     <HiOutlineShoppingCart />
@@ -62,13 +62,15 @@ const Navbar = () => {
             <img width="40px" src={cartIcon} alt="" />
         </a>
         <a href="#" className="flex  items-center text-white py-2 uppercase">
-            {user ?
-                <button onClick={handleLogOut} className="btn btn-ghost">Sign out</button>
-                :
+            {user ? (
+                <button onClick={handleLogOut} className="btn btn-ghost">
+                    Sign out
+                </button>
+            ) : (
                 <Link to="/login" className="block text-white py-2 uppercase">
                     Login
                 </Link>
-            }
+            )}
 
             <img width="40px" src={user?.PhotoURL || avatar} alt="" />
         </a>
