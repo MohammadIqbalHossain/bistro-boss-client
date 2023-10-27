@@ -1,6 +1,7 @@
 
 
 import { useState } from "react";
+import { HiOutlineShoppingCart } from 'react-icons/hi';
 
 import logo from '../../../assets/logo.png';
 import cartIcon from '../../../assets/icon/cart-icon.png';
@@ -8,12 +9,15 @@ import avatar from '../../../assets/icon/avatar.svg';
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import useCart from "../../../Hooks/useCart";
 
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { user, logOut } = useContext(AuthContext);
-    console.log(user);
+    const [cart] = useCart();
+    console.log(cart);
+
 
     const handleLogOut = () => {
         logOut()
@@ -47,8 +51,10 @@ const Navbar = () => {
 
         <Link to="/" className="block text-white py-2 uppercase">
             <button className="btn">
-                Inbox
-                <div className="badge badge-secondary">+99</div>
+                <div className="text-3xl">
+                    <HiOutlineShoppingCart />
+                </div>
+                <div className="badge badge-secondary">+{cart.length || 0}</div>
             </button>
         </Link>
 
@@ -56,14 +62,15 @@ const Navbar = () => {
             <img width="40px" src={cartIcon} alt="" />
         </a>
         <a href="#" className="flex  items-center text-white py-2 uppercase">
-            {user ? <>
+            {user ?
                 <button onClick={handleLogOut} className="btn btn-ghost">Sign out</button>
-            </> : <>
+                :
                 <Link to="/login" className="block text-white py-2 uppercase">
                     Login
                 </Link>
-            </>}
-            {user ? <img width="40px" src={user?.PhotoURL} alt="" /> : <img width="40px" src={avatar} alt="" />}
+            }
+
+            <img width="40px" src={user?.PhotoURL || avatar} alt="" />
         </a>
     </>
     return (

@@ -1,7 +1,62 @@
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const FoodCard = ({ item }) => {
-    const { name, price, recipe, image } = item;
-    console.log(name);
+    const { name, price, recipe, image, _id } = item;
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const handleFoodOrder = item => {
+        console.log(item);
+        if (user && user.email) {
+
+            const cartItem = {
+                menuItemId: _id,
+                name,
+                price,
+                image,
+                email: user.email
+            }
+
+            fetch('http://localhost:5000/carts', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(cartItem)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Your order is successful',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                })
+        }
+        else {
+            Swal.fire({
+                title: 'Please login to order the food',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Login now.'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login', { state: location });
+                }
+            })
+        }
+    }
+
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
             <figure><img src={image} alt="Shoes" /></figure>
@@ -10,7 +65,7 @@ const FoodCard = ({ item }) => {
                 <h2 className="card-title">{name}</h2>
                 <p className="text-center">{recipe}</p>
                 <div className="card-actions justify-end">
-                    <button className="btn btn-outline border-0 border-b-4 border-orange-400 bg-slate-300">Order Now</button>
+                    <button onClick={() => handleFoodOrder(item)} className="btn btn-outline border-0 border-b-4 border-orange-400 bg-slate-300">Order Now</button>
                 </div>
             </div>
         </div>
