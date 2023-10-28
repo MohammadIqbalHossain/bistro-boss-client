@@ -1,7 +1,9 @@
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { FaCartPlus, FaWallet, FaCalendarAlt, FaHome, FaHamburger } from 'react-icons/fa';
+import useCart from "../Hooks/useCart";
 
 const Dashboard = () => {
+    const [cart] = useCart();
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -13,56 +15,57 @@ const Dashboard = () => {
                 <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 
             </div>
-            <div className="drawer-side">
+            <div className="drawer-side bg-[#D1A054]">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+                <ul className="menu p-4 w-80  min-h-full text-xl">
                     {/* Sidebar content here */}
                     <li>
-                        <Link>
+                        <NavLink to={"/dashboard/home"}>
                             <FaHome />
                             User Home
-                        </Link>
+                        </NavLink >
                     </li>
                     <li>
-                        <Link>
+                        <NavLink to={"/dashboard/mycart"}>
                             <FaCartPlus />
                             My Cart
-                        </Link>
+                            <span className="badge badge-secondary">+{cart.length || 0}</span>
+                        </NavLink >
                     </li>
                     <li>
-                        <Link>
+                        <NavLink to={"/dashboard/history"}>
                             <FaWallet />
                             Payment History
-                        </Link>
+                        </NavLink >
                     </li>
                     <li>
-                        <Link>
+                        <NavLink to={"/dashboard/reservations"}>
                             <FaCalendarAlt />
                             Reservations
-                        </Link>
+                        </NavLink >
                     </li>
 
                     <div className="flex flex-col w-full border-opacity-50">
                         <div className="divider"></div>
                     </div>
                     <li>
-                        <Link>
+                        <NavLink to={"/dashboard/home"}>
                             <FaHome />
                             Home
-                        </Link>
+                        </NavLink >
                     </li>
 
                     <li>
-                        <Link to={"/"}>
+                        <NavLink to={"/menu"}>
                             <FaHome />
                             Our Menu
-                        </Link>
+                        </NavLink >
                     </li>
                     <li>
-                        <Link to="/order/salad" >
+                        <NavLink to="/order/salad" >
                             <FaHamburger />
-                            Our Menu
-                        </Link>
+                            Order Menu
+                        </NavLink >
                     </li>
 
                 </ul>
