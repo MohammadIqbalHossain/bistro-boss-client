@@ -1,4 +1,5 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
+import { FaCartPlus, FaWallet, FaCalendarAlt, FaHome, FaHamburger } from 'react-icons/fa';
 
 const Dashboard = () => {
     return (
@@ -8,7 +9,7 @@ const Dashboard = () => {
                 {/* Page content here */}
 
                 <Outlet></Outlet>
-                
+
                 <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 
             </div>
@@ -16,8 +17,54 @@ const Dashboard = () => {
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
                     {/* Sidebar content here */}
-                    <li><a>Sidebar Item 1</a></li>
-                    <li><a>Sidebar Item 2</a></li>
+                    <li>
+                        <Link>
+                            <FaHome />
+                            User Home
+                        </Link>
+                    </li>
+                    <li>
+                        <Link>
+                            <FaCartPlus />
+                            My Cart
+                        </Link>
+                    </li>
+                    <li>
+                        <Link>
+                            <FaWallet />
+                            Payment History
+                        </Link>
+                    </li>
+                    <li>
+                        <Link>
+                            <FaCalendarAlt />
+                            Reservations
+                        </Link>
+                    </li>
+
+                    <div className="flex flex-col w-full border-opacity-50">
+                        <div className="divider"></div>
+                    </div>
+                    <li>
+                        <Link>
+                            <FaHome />
+                            Home
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link to={"/"}>
+                            <FaHome />
+                            Our Menu
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/order/salad" >
+                            <FaHamburger />
+                            Our Menu
+                        </Link>
+                    </li>
+
                 </ul>
 
             </div>
