@@ -49,7 +49,7 @@ const Dashboard = () => {
                         <div className="divider"></div>
                     </div>
                     <li>
-                        <NavLink to={"/dashboard/home"}>
+                        <NavLink to={"/"}>
                             <FaHome />
                             Home
                         </NavLink >

@@ -5,6 +5,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Swal from 'sweetalert2'
+import SocialLogin from '../../components/SocialLogin/SocialLogin';
 
 const Login = () => {
 
@@ -86,13 +87,18 @@ const Login = () => {
                                 <label className="label">
                                     <LoadCanvasTemplate />
                                 </label>
-                                <input onBlur={handleValidateCaptcha} type="text" name="captcha" placeholder="Write the captcha avobe" className="input input-bordered"/>
+                                <input onBlur={handleValidateCaptcha} type="text" name="captcha" placeholder="Write the captcha avobe" className="input input-bordered" />
                             </div>
-                            {/* Need to enable disable button, temorarely stopped for development */}
+
+
                             <div className="form-control mt-6">
-                                <input disabled={false} className="btn btn-primary" type="submit" value="Login" />
+                                <input disabled={disabled} className="btn btn-primary" type="submit" value="Login" />
+
+                                <SocialLogin></SocialLogin>
+
                                 <p><small>New here? <Link to={'/signup'}>Please create an account</Link></small></p>
                             </div>
+
                         </form>
                     </div>
                 </div>
