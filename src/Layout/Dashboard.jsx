@@ -1,9 +1,10 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FaCartPlus, FaWallet, FaCalendarAlt, FaHome, FaHamburger } from 'react-icons/fa';
+import { FaCartPlus, FaWallet, FaCalendarAlt, FaHome, FaHamburger, FaUtensils, FaBook, FaUsers } from 'react-icons/fa';
 import useCart from "../Hooks/useCart";
 
 const Dashboard = () => {
     const [cart] = useCart();
+    const isAdmin = true;
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -19,7 +20,49 @@ const Dashboard = () => {
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80  min-h-full text-xl">
                     {/* Sidebar content here */}
-                    <li>
+
+                    {isAdmin ? (
+                        <>
+                            <li>
+                                <NavLink to={"/dashboard/home"}>
+                                    <FaHome />
+                                    Admin Home
+                                </NavLink >
+                            </li>
+                            <li>
+                                <NavLink to={"/dashboard/mycart"}>
+                                    <FaHamburger />
+                                     Add Items
+                                    <span className="badge badge-secondary">+{cart.length || 0}</span>
+                                </NavLink >
+                            </li>
+                            <li>
+                                <NavLink to={"/dashboard/history"}>
+                                    <FaWallet />
+                                   Manage Items
+                                </NavLink >
+                            </li>
+                            <li>
+                                <NavLink to={"/dashboard/reservations"}>
+                                    <FaBook />
+                                    Manage Bookings
+                                </NavLink >
+                            </li>
+                            <li>
+                                <NavLink to={"/dashboard/allusers"}>
+                                    <FaUsers />
+                                   All Users
+                                </NavLink >
+                            </li>
+
+                        </>
+                    ) : (
+                        <>
+
+
+                        </>
+                    )}
+                    {/* <li>
                         <NavLink to={"/dashboard/home"}>
                             <FaHome />
                             User Home
@@ -43,7 +86,7 @@ const Dashboard = () => {
                             <FaCalendarAlt />
                             Reservations
                         </NavLink >
-                    </li>
+                    </li> */}
 
                     <div className="flex flex-col w-full border-opacity-50">
                         <div className="divider"></div>
